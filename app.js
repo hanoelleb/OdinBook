@@ -4,11 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var mongoose = require('mongoose');
+var passport = require('passport');
+
+require('./passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+require('dotenv').config();
+
 var app = express();
+
+var mongoose = require('mongoose');
+var mongoDB = process.env.DB_URL;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useFindAndModify: false });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
