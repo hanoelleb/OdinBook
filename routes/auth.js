@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/signin', function(req, res, next) {
-    res.send('NOT IMPLEMENTED: get sign in');
+    res.render('sign_in', {title: 'Sign in!'});
 });
 
 router.post('/signin', function(req, res, next) {
@@ -10,9 +10,11 @@ router.post('/signin', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
-    res.send('NOT IMPLEMENTED: get sign up');
+    res.render('sign_up', {title: 'Sign up!'});
 });
 
 router.post('/signup', function(req, res, next) {
     res.send('NOT IMPLEMENTED: post sign up');
 });
+
+module.exports = router;

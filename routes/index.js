@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 /* Profile */
 
 router.get('/profile/', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get profile page');
+  res.render('profile', {title: 'Your profile'});
 })
 
 router.get('/profile/edit', function(req, res, next) {
@@ -24,14 +24,15 @@ router.delete('/profile/', function(req, res, next) {
   res.send('NOT IMPLEMENTED: delete profile');
 });
 
-router.get('/profile/friends', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get friends');
+/* Friends */
+
+router.get('/friends', function(req, res, next) {
+  res.render('friends_list', {title: 'Your friends'});
 });
 
-router.delete('/profile/friends/:id/remove', function(req, res, next) {
+router.delete('/friends/:id/remove', function(req, res, next) {
   res.send('NOT IMPLEMENTED: remove friend');
 });
-
 
 /* Post */
 

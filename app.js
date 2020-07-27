@@ -10,7 +10,9 @@ var passport = require('passport');
 require('./passport');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var requestRouter = require('./routes/request');
+var authRouter = require('./routes/auth');
+
 
 require('dotenv').config();
 
@@ -39,7 +41,8 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/requests', requestRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
