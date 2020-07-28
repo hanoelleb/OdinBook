@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+var UserController = require('../controllers/userController');
+var RequestController = require('../controllers/requestController');
+var PostController = require('../controllers/postController');
+var CommentController = require('../controllers/commentController');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'OdinBook' });
 });
 
 /* Profile */
@@ -81,6 +86,10 @@ router.get('/:id/posts/', function(req, res, next) {
 router.get('/:id/posts/:pid', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get other user post page');
 })
+
+router.get('/:id/profile', function(req, res, next) {
+  res.send('NOT IMPLEMENTED: get other user profile');
+});
 
 /* Comment */
 
