@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var UserController = require('../controllers/userController');
+
 router.get('/signin', function(req, res, next) {
     res.render('sign_in', {title: 'Sign in!'});
 });
