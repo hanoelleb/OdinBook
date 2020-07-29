@@ -16,6 +16,8 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
+    var name = req.body.name;
+    var password = req.body.password;
     res.send('NOT IMPLEMENTED: post sign up');
 });
 

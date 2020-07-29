@@ -49,7 +49,7 @@ router.get('/post/new', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get create post');
 });
 
-router.put('/post/', function(req, res, next) {
+router.post('/post/', function(req, res, next) {
   res.send('NOT IMPLEMENTED: post create post');
 });
 
@@ -73,7 +73,7 @@ router.get('/post/:id/comment/new', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get create comment');
 });
 
-router.put('/post/:id/comment/', function(req, res, next) {
+router.post('/post/:id/comment/', function(req, res, next) {
   res.send('NOT IMPLEMENTED: post create comment');
 });
 

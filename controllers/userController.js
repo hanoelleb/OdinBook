@@ -5,3 +5,7 @@ var User = require('../models/user');
 exports.create_user = function(req, res, next) {
     res.send('NOT IMPLEMENTED: create user');
 }
+
+exports.post_signin = function(req, res, next) {
+    res.send('NOT IMPLEMENTED: sign in');
+}
