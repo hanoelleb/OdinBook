@@ -6,6 +6,7 @@ var RequestController = require('../controllers/requestController');
 var PostController = require('../controllers/postController');
 var CommentController = require('../controllers/commentController');
 var ProfileController = require('../controllers/profileController');
+var IndexController = require('../controllers/indexController');
 
 //redirect to sign in if not logged in
 router.use(function loggedIn(req, res, next) {
@@ -16,9 +17,9 @@ router.use(function loggedIn(req, res, next) {
 })
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'OdinBook' });
-});
+router.get('/', IndexController.get_posts);
+
+router.post('/', PostController.add_post);
 
 /* Profile */
 

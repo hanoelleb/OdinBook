@@ -9,5 +9,12 @@
     <% include navbar %>
     <p>Welcome to <%= title %></p>
     <% include post_form %>
+    <% for ( var i = 0; i < posts.length; i++) { %>
+        <div>
+	    <p><%= posts[i].content %></p>
+	    <span>likes: <%= posts[i].likes %> 
+                  date: <%= posts[i].date %></span>
+        </div>
+    <% } %>
   </body>
 </html>

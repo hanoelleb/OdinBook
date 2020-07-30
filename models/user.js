@@ -10,7 +10,6 @@ var UserSchema = new Schema(
     birthday: {type: Date},
     age: {type: Number},
     bio: {type: String},
-    posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
     friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
     requests: [{type: Schema.Types.ObjectId, ref: 'Request'}]
   }
