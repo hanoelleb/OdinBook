@@ -6,8 +6,7 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var mongoose = require('mongoose');
 var passport = require('passport');
-
-require('./passport');
+var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var requestRouter = require('./routes/request');
@@ -27,6 +26,13 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
+require('./passport');
 
 app.use(logger('dev'));
 app.use(express.json());
