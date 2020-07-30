@@ -7,9 +7,6 @@ var User = require('./models/user');
 
 passport.use( new LocalStrategy (
     function(username, password, done) {
-	console.log(username);
-	console.log(password);
-	console.log(typeof password);
         User.findOne({name: username}, function(err, user) {
 	    if (err) return done(err);
 

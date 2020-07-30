@@ -6,6 +6,13 @@ var RequestController = require('../controllers/requestController');
 var PostController = require('../controllers/postController');
 var CommentController = require('../controllers/commentController');
 
+router.use(function loggedIn(req, res, next) {
+    if (!req.user)
+        res.redirect('/auth/signin');
+    else
+        next();
+})
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'OdinBook' });
