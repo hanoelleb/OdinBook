@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var requestRouter = require('./routes/request');
 var authRouter = require('./routes/auth');
 
+var methodOverride = require('method-override');
 
 require('dotenv').config();
 
@@ -34,10 +35,14 @@ app.use(express.urlencoded({ extended: false }));
 
 require('./passport');
 
+/*
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
+*/
+
+app.use(methodOverride('_method'));
 
 app.use(logger('dev'));
 app.use(express.json());

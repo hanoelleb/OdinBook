@@ -1,11 +1,20 @@
-<button>Edit profile</button>
-<form>
-    <input type='text' placeholder='Name/Nickname'></input>
+<!DOCTYPE html>
+<form method='POST' action='/profile?_method=PUT'>
+    <input type='text' placeholder='Name/Nickname' name='name'
+        value=<%= locals.user ? user.name : '' %>
+    ></input>
     <label>Age: </label>
-    <input type='number' placeholder='18'></input>
+    <input type='number' name='age'
+       value=<%= user.age %>
+    >
+    </input>
     <label>Birthday: </label>
-    <input type='date'></input>
+    <input type='date' name='birthday'
+        value=<%= user.birthday ? user.formatted_birthday : '' %>
+    >
+    </input>
     <label>Bio: </label>
-    <textarea placeholder="What's your story?" rows='8' cols='40'></textarea>
+    <textarea placeholder="What's your story?" rows='8' cols='40' name='bio' 
+    ><%= user.bio ? user.bio : '' %></textarea>
     <input type='submit' value='Update'></input>
 </form>

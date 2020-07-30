@@ -5,7 +5,9 @@ var UserController = require('../controllers/userController');
 var RequestController = require('../controllers/requestController');
 var PostController = require('../controllers/postController');
 var CommentController = require('../controllers/commentController');
+var ProfileController = require('../controllers/profileController');
 
+//redirect to sign in if not logged in
 router.use(function loggedIn(req, res, next) {
     if (!req.user)
         res.redirect('/auth/signin');
@@ -21,16 +23,13 @@ router.get('/', function(req, res, next) {
 /* Profile */
 
 router.get('/profile/', function(req, res, next) {
-  res.render('profile', {title: 'Your profile'});
+  console.log(JSON.stringify(req.user));
+  res.render('profile', {title: 'Your profile', user: req.user });
 })
 
-router.get('/profile/edit', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get edit profile page');
-})
+router.get('/profile/edit', ProfileController.get_edit)
 
-router.put('/profile/', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: post edit profile page');
-});
+router.put('/profile/', ProfileController.put_update);
 
 router.delete('/profile/', function(req, res, next) {
   res.send('NOT IMPLEMENTED: delete profile');

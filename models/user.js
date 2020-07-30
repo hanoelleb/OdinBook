@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment = require('moment');
 
 var UserSchema = new Schema(
   {
@@ -14,5 +15,11 @@ var UserSchema = new Schema(
     requests: [{type: Schema.Types.ObjectId, ref: 'Request'}]
   }
 );
+
+UserSchema
+    .virtual('formatted_birthday')
+    .get( function() {
+        return moment(this.birthday).format('YYYY-MM-DD');
+    });
 
 module.exports = mongoose.model('User', UserSchema);
