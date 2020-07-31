@@ -10,13 +10,33 @@
 		<% if (isSent) { %>
 		    Request sent to: <%= request_list[i].receiver.name %>
 		    <form method='POST' action=''>
-                        <input type='submit' value='Cancel'></input>
+			<input type='hidden' 
+			   value='<%= request_list[i]._id %>' name='req_id'>
+			</input>
+                        <input type='submit' value='Cancel'>
+			</input>
                     </form>
 		<% } else { %>
                     Request from: <%= request_list[i].sender.name %>
 		    <form method='POST' action=''>
-			<input type='submit' value='Accept'></input>
-			<input type='submit' value='Reject'></input>
+			<input type='hidden'
+			   value='<%= request_list[i]._id %>' name='req_id'>
+			</input>
+
+			<input type='hidden'
+			    name='sender' 
+			    value='<%= request_list[i].sender._id %>'>
+			</input>
+
+			<input type='hidden'
+			    name='receiver' 
+			    value='<%= request_list[i].receiver._id %>'>
+			</input>
+
+			<input type='submit' value='Accept' name='response'>
+			</input>
+			<input type='submit' value='Reject' name='response'>
+			</input>
                     </form>
 		<% } %>
             </div>
