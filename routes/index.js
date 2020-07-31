@@ -69,6 +69,8 @@ router.post('/post/:id/', CommentController.create_comment);
 
 router.get('/:id/timeline/', UserController.show_user);
 
+router.post('/:id/timeline/', RequestController.send_request);
+
 router.get('/:id/posts/:pid', PostController.get_other_user_post);
 
 //to add comment on other user's post

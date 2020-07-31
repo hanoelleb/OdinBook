@@ -34,8 +34,8 @@ exports.get_post_page = function(req, res, next) {
       },
       function(err, results) {
           if (err) return next(err);
-	  res.render('post_page', {post: results.post, 
-              comments: results.comments});
+	  res.render('post_page', {other: false, post: results.post, 
+              comments: results.comments, user: req.user});
       }
     )
 }
@@ -78,13 +78,15 @@ exports.get_other_user_post = function(req, res, next) {
           comments: function(callback) {
               Comment.find({post: req.params.pid})
 		  .populate('post')
+		  .populate('author')
 		  .exec(callback);
 	  }
       }, 
       function(err, results) {
-          if (err) return next(err);  
-	  res.render('post_page', { post: results.post, 
-              comments: results.comments });
+          if (err) return next(err);
+
+	  res.render('post_page', { other: true, post: results.post, 
+              comments: results.comments, user: req.user });
       }
     )
 }

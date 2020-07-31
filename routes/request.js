@@ -4,12 +4,8 @@ var router = express.Router();
 var UserController = require('../controllers/userController');
 var RequestController = require('../controllers/requestController');
 
-router.get('/received', function(req, res, next) {
-  res.render('request_list', {title: 'Received Requests'});
-});
+router.get('/received', RequestController.get_received);
 
-router.get('/sent', function(req, res, next) {
-  res.render('request_list', {title: 'Sent Requests'});
-});
+router.get('/sent', RequestController.get_sent);
 
 module.exports = router;

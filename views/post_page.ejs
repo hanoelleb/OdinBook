@@ -4,7 +4,10 @@
     </head>
     <body>
         <%- include navbar %>
-	<a href=<%= '/post/' + post._id + '/edit' %> >Edit post</a>
+	<% if (!other) { %>
+	    <a href=<%= '/post/' + post._id + '/edit' %>> >Edit post</a>
+	    <a href=<%= '/post/' + post._id + '/delete' %>>Remove post</a>
+	<% } %>
         <div>
             <%= post.content %>
 	    <span>likes: <%= post.likes %> date: <%= post.date %></span>
@@ -13,12 +16,17 @@
         <% if (comments) { %>
             <% for (var i = 0; i < comments.length; i++) { %>
 	        <div>
-                    <%= comments[i].post.name %>
+		    <%= comments[i].author.name %><br>
 		    <%= comments[i].content %>
 		    <span>
-	                likes: <%= comments[i].likes %> 
+			<button>like this:</button><%= comments[i].likes %>
 			date: <%= comments[i].date %>
                     </span>
+		    <% if (comments[i].author._id.toString() === 
+		        user._id.toString()) { %>
+		        <button>Edit</button>
+			<button>Delete</button>
+		    <% } %>
                 </div>
             <% } %>
 	<% } else { %>

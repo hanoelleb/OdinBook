@@ -53,12 +53,16 @@ exports.show_user = function(req, res, next) {
 	posts: function(callback) {
             Post.find({user: req.params.id})
 		.exec(callback);
+	},
+	isFriends: function(callback) {
+            User.find({_id: req.params.id, friends: req.user._id})
+		.exec(callback);
 	}
       }, 
 	function(err, results) {
             if (err) return next(err);
 	    res.render('other_user', { user: results.user, 
-	        posts: results.posts });
+	        posts: results.posts, isFriends: results.isFriends });
         }
     )
 }
