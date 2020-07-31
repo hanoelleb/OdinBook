@@ -24,7 +24,6 @@ router.post('/', PostController.add_post);
 /* Profile */
 
 router.get('/profile/', function(req, res, next) {
-  console.log(JSON.stringify(req.user));
   res.render('profile', {title: 'Your profile', user: req.user });
 })
 
@@ -58,17 +57,11 @@ router.delete('/post/:id/delete', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get delete post');
 });
 
-router.delete('/post/:id/comment/', function(req, res, next) {
+router.delete('/post/:id/comment/:cid', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get delete comment');
 });
 
-router.get('/post/:id/comment/new', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get create comment');
-});
-
-router.post('/post/:id/comment/', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: post create comment');
-});
+router.post('/post/:id/', CommentController.create_comment);
 
 /* Other User */
 

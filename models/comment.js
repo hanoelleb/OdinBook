@@ -5,7 +5,7 @@ var CommentSchema = new Schema(
   {
     post: {type: Schema.Types.ObjectId, ref: 'Post', required: true},
     content: {type: String, required: true},
-    data: {type: Date, required: true},
+    date: {type: Date, required: true},
     likes: {type: Number}
   }
 );

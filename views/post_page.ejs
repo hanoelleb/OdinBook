@@ -9,9 +9,20 @@
             <%= post.content %>
 	    <span>likes: <%= post.likes %> date: <%= post.date %></span>
         </div>
-        <% if (post.comments) { %>
-            <% for (var i = 0; i < post.comments.length; i++) { %>
+	<%- include comment_form %>
+        <% if (comments) { %>
+            <% for (var i = 0; i < comments.length; i++) { %>
+	        <div>
+                    <%= comments[i].post.name %>
+		    <%= comments[i].content %>
+		    <span>
+	                likes: <%= comments[i].likes %> 
+			date: <%= comments[i].date %>
+                    </span>
+                </div>
             <% } %>
-        <% } %>
+	<% } else { %>
+            <p>No comments on this post.</p>
+	<% } %>
     </body>
 </html>

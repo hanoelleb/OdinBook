@@ -1,4 +1,7 @@
+var async = require('async');
+
 var Post = require('../models/post');
+var Comment = require('../models/comment');
 
 exports.add_post = function(req, res, next) {
     var post = new Post({
@@ -17,11 +20,24 @@ exports.add_post = function(req, res, next) {
 exports.get_post_page = function(req, res, next) {
     var id = req.params.id;
 
-    Post.findById(id)
-        .exec( function(err, post) {
-            if (err) return next(err);
-            res.render('post_page', {post: post});
-	});
+    async.parallel(
+      {
+          post: function(callback) {
+              Post.findById(id)
+		  .exec(callback);
+	  },
+          comments: function(callback) {
+              Comment.find({post: id})
+		  .populate('post')
+		  .exec(callback);
+	  }
+      },
+      function(err, results) {
+          if (err) return next(err);
+	  res.render('post_page', {post: results.post, 
+              comments: results.comments});
+      }
+    )
 }
 
 exports.get_edit_form = function(req, res, next) {
