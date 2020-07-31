@@ -5,5 +5,15 @@
     </head>
     <body>
 	<h2><%= user.name + "'s Timeline" %></h2>
+	<% for (var i = 0; i < posts.length; i++) { %>
+            <div>
+                <a href=<%= '/' + user._id + '/posts/' + posts[i]._id %> >
+		    More details
+		</a>
+                <p><%= posts[i].content %></p>
+                <span>likes: <%= posts[i].likes %>
+                    date: <%= posts[i].date %></span>
+            </div>
+        <% } %>
     </body>
 </html>

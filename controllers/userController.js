@@ -3,6 +3,7 @@ var bcrypt = require('bcryptjs');
 var passport = require('passport');
 
 var User = require('../models/user');
+var Post = require('../models/post');
 
 require('../passport');
 
@@ -43,9 +44,21 @@ exports.index_users = function(req, res, next) {
 
 //TODO also get Posts by user with async, get all posts on timeline
 exports.show_user = function(req, res, next) {
-    User.findById(req.params.id)
-	.exec( function(err, found_user) {
-	    if (err) return next(err);
-            res.render('other_user', { user: found_user });
-	});
+    async.parallel(
+      { 
+	user: function(callback) {
+	    User.findById(req.params.id)
+                .exec(callback);
+        },
+	posts: function(callback) {
+            Post.find({user: req.params.id})
+		.exec(callback);
+	}
+      }, 
+	function(err, results) {
+            if (err) return next(err);
+	    res.render('other_user', { user: results.user, 
+	        posts: results.posts });
+        }
+    )
 }

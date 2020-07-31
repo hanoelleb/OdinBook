@@ -69,14 +69,10 @@ router.post('/post/:id/', CommentController.create_comment);
 
 router.get('/:id/timeline/', UserController.show_user);
 
-router.get('/:id/posts/:pid', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get other user post page');
-});
+router.get('/:id/posts/:pid', PostController.get_other_user_post);
 
 //to add comment on other user's post
-router.post('/:id/posts/:pid', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: add comment to other user\'s post');
-});
+router.post('/:id/posts/:pid', CommentController.post_comment);
 
 router.get('/:id/profile', ProfileController.show_other_profile);
 

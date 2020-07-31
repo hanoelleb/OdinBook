@@ -51,8 +51,6 @@ exports.get_edit_form = function(req, res, next) {
 
 exports.update_post = function(req, res, next) {
     var id = req.params.id;
-    console.log(id);
-    console.log('content: ' + req.body.post);
  
     var post = new Post(
       {
@@ -67,5 +65,26 @@ exports.update_post = function(req, res, next) {
 	    if (err) return next(err);
             res.redirect( thepost.url );
 	}
+    )
+}
+
+exports.get_other_user_post = function(req, res, next) {
+    async.parallel(
+      {
+          post: function(callback) {
+              Post.findById(req.params.pid)
+		  .exec(callback);
+	  },
+          comments: function(callback) {
+              Comment.find({post: req.params.pid})
+		  .populate('post')
+		  .exec(callback);
+	  }
+      }, 
+      function(err, results) {
+          if (err) return next(err);  
+	  res.render('post_page', { post: results.post, 
+              comments: results.comments });
+      }
     )
 }
