@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8'>
+    </head>
+    <body>
+        <%- include navbar %>
+        <% for (var i = 0; i < users.length; i++) { %>
+             <a href=<%= '/' + users[i]._id + '/timeline/' %>>
+                 <%= users[i].name %>
+	     </a>
+        <% } %>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include navbar %>
+        <h2><%= user.name + "'s profile"%></h2>
+        <p>Name: <%= user.name %></p>
+        <p>Age: <%= user.age ? user.age : "This user doesn't have their age posted."%></p>
+        <p>Birthday: <%= user.birthday ? user.birthday : "This user doesn't have their birthday posted."%></p>
+        <p>Bio: <%= user.bio ? 
+	    user.bio : 'This user does not have a bio.'%>
+	<p>
+    </body>
+</html>
+

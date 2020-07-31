@@ -4,7 +4,7 @@
         <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
     <body>
-	<% include navbar %>
+	<%- include navbar %>
 	<h2><%= title %></h2>
 	<p>Name: <%= user.name %></p>
 	<p>Age: <%= user.age ? user.age : 'Add your age by editing your profile!'%></p>

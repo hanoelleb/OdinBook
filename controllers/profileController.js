@@ -22,3 +22,11 @@ exports.put_update = function( req, res, next) {
         }
     );
 };
+
+exports.show_other_profile = function( req, res, next) {
+    User.findById(req.params.id)
+	.exec( function(err, found_user) {
+	    if (err) return next(err);
+            res.render('other_profile', { user: found_user } );
+	});
+};

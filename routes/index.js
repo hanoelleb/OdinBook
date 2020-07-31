@@ -37,9 +37,7 @@ router.delete('/profile/', function(req, res, next) {
 
 /* Friends */
 
-router.get('/find', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get all users');
-});
+router.get('/find', UserController.index_users);
 
 router.get('/friends', function(req, res, next) {
   res.render('friends_list', {title: 'Your friends'});
@@ -69,9 +67,7 @@ router.post('/post/:id/', CommentController.create_comment);
 
 /* Other User */
 
-router.get('/:id/timeline/', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get other user\'s profile page');
-});
+router.get('/:id/timeline/', UserController.show_user);
 
 router.get('/:id/posts/:pid', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get other user post page');
@@ -82,8 +78,6 @@ router.post('/:id/posts/:pid', function(req, res, next) {
   res.send('NOT IMPLEMENTED: add comment to other user\'s post');
 });
 
-router.get('/:id/profile', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get other user profile');
-});
+router.get('/:id/profile', ProfileController.show_other_profile);
 
 module.exports = router;

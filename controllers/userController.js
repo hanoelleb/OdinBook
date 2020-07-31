@@ -32,3 +32,20 @@ exports.post_signin = passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/auth/signin'
 });
+
+exports.index_users = function(req, res, next) {
+    User.find({'_id' : {$ne : req.user._id}})
+        .exec( function(err, user_list) {
+	    if (err) return next(err);
+            res.render('find', {title: 'Find friends!', users: user_list});
+	});
+}
+
+//TODO also get Posts by user with async, get all posts on timeline
+exports.show_user = function(req, res, next) {
+    User.findById(req.params.id)
+	.exec( function(err, found_user) {
+	    if (err) return next(err);
+            res.render('other_user', { user: found_user });
+	});
+}
