@@ -48,25 +48,11 @@ router.delete('/friends/:id/remove', function(req, res, next) {
 
 /* Post */
 
-router.get('/post/:id', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get post page');
-});
+router.get('/post/:id', PostController.get_post_page);
 
-router.get('/post/new', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get create post');
-});
+router.get('/post/:id/edit', PostController.get_edit_form);
 
-router.post('/post/', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: post create post');
-});
-
-router.get('/post/:id/edit', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: get update post');
-});
-
-router.put('/post/:id/', function(req, res, next) {
-  res.send('NOT IMPLEMENTED: post update post');
-});
+router.put('/post/:id/', PostController.update_post);
 
 router.delete('/post/:id/delete', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get delete post');

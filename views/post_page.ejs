@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <%- include navbar %>
+	<a href=<%= '/post/' + post._id + '/edit' %> >Edit post</a>
+        <div>
+            <%= post.content %>
+	    <span>likes: <%= post.likes %> date: <%= post.date %></span>
+        </div>
+        <% if (post.comments) { %>
+            <% for (var i = 0; i < post.comments.length; i++) { %>
+            <% } %>
+        <% } %>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<h2><%= title %></h2>
+<form method='POST' action=<%= '/post/' + post._id + '?_method=PUT' %> >
+    <textarea name='post' placeholder="What's on your mind?"
+        rows='8' cols='80'><%= post.content %></textarea>
+    <input type='submit' value='Update'></input>
+</form>
+
