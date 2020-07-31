@@ -37,6 +37,10 @@ router.delete('/profile/', function(req, res, next) {
 
 /* Friends */
 
+router.get('/find', function(req, res, next) {
+  res.send('NOT IMPLEMENTED: get all users');
+});
+
 router.get('/friends', function(req, res, next) {
   res.render('friends_list', {title: 'Your friends'});
 });
@@ -65,28 +69,21 @@ router.post('/post/:id/', CommentController.create_comment);
 
 /* Other User */
 
-router.get('/:id/posts/', function(req, res, next) {
+router.get('/:id/timeline/', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get other user\'s profile page');
-})
+});
 
 router.get('/:id/posts/:pid', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get other user post page');
-})
+});
+
+//to add comment on other user's post
+router.post('/:id/posts/:pid', function(req, res, next) {
+  res.send('NOT IMPLEMENTED: add comment to other user\'s post');
+});
 
 router.get('/:id/profile', function(req, res, next) {
   res.send('NOT IMPLEMENTED: get other user profile');
 });
-
-/* Comment */
-
-router.get('/:id/posts/:pid/comment/new', 
-  function(req, res, next) {
-     res.send('NOT IMPLEMENTED: get comment to post');
-})
-
-router.post('/:id/posts/:pid/comment',
-  function(req, res, next) {
-     res.send('NOT IMPLEMENTED: post comment to post');
-})
 
 module.exports = router;
