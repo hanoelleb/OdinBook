@@ -90,3 +90,13 @@ exports.get_other_user_post = function(req, res, next) {
       }
     )
 }
+
+exports.like_post = function(req, res, next) {
+    var post_id = req.body.post_id;
+    Post.findByIdAndUpdate(post_id, {$inc : { likes : 1 }}, 
+	 { new: true}, function(err) {
+             if (err) return next(err);
+             res.redirect('/' + req.params.id + '/timeline');
+	 }
+    );
+}

@@ -69,9 +69,16 @@ router.post('/post/:id/', CommentController.create_comment);
 
 router.get('/:id/timeline/', UserController.show_user);
 
+//send friend request
 router.post('/:id/timeline/', RequestController.send_request);
 
+//like post
+router.put('/:id/timeline/', PostController.like_post);
+
 router.get('/:id/posts/:pid', PostController.get_other_user_post);
+
+//like post on page
+router.put('/:id/posts/:pid', PostController.like_post);
 
 //to add comment on other user's post
 router.post('/:id/posts/:pid', CommentController.post_comment);

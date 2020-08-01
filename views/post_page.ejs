@@ -10,7 +10,19 @@
 	<% } %>
         <div>
             <%= post.content %>
-	    <span>likes: <%= post.likes %> date: <%= post.date %></span>
+	    <span>
+		 <form method='POST' 
+                      action='<%= "/"+user._id+"/posts/"+post._id+
+                      "/?_method=PUT" %>'>
+
+                      <input type='hidden' name='post_id' 
+                          value='<%= post._id %>'></input>
+
+                      <input type='submit' name='action'
+			  value="<%= 'like this: ' + post.likes %>"></input>
+                 </form>
+		 date: <%= post.date %>
+	    </span>
         </div>
 	<%- include comment_form %>
         <% if (comments) { %>
@@ -20,13 +32,24 @@
 		    <%= comments[i].content %>
 		    <span>
 			<button>like this:</button><%= comments[i].likes %>
-			date: <%= comments[i].date %>
                     </span>
 		    <% if (comments[i].author._id.toString() === 
 		        user._id.toString()) { %>
 		        <button>Edit</button>
 			<button>Delete</button>
-		    <% } %>
+                    <% } else { %>
+		        <form method='POST' 
+                          action='<%= "/"+user._id+"/posts/"+post._id+
+			      "/?_method=PUT" %>'>
+
+                        <input type='hidden' name='comment_id' 
+                          value='<%= comments[i]._id %>'></input>
+
+                        <input type='submit' name='action'
+                          value='like this:'></input>
+                        </form>      
+                    <% } %>
+		    date: <%= comments[i].date %>
                 </div>
             <% } %>
 	<% } else { %>
