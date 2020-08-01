@@ -1,4 +1,5 @@
 var async = require('async');
+var fs = require('fs');
 
 var User = require('../models/user');
 var Post = require('../models/post');
@@ -51,3 +52,39 @@ exports.show_other_profile = function( req, res, next) {
             posts: results.posts } );
     });
 };
+
+exports.photo_form = function(req, res, next) {
+    res.render('photo_form', {title: 'Profile Picture'});
+};
+
+exports.set_photo = function(req, res, next) {
+    var user_id = req.user._id;
+
+    if (req.file != null) {
+	var user = new User({
+	    _id: user_id,
+	});
+
+	user.avatar.data = fs.readFileSync(req.file.path);
+	user.avatar.contentType = 'image/png';
+        console.log('set image');
+
+        User.findByIdAndUpdate(user_id, user, {}, 
+	    function(err){
+                if (err) return next(err);
+		res.redirect('/profile');
+	    });
+    } else {
+        console.log('no file uploaded');
+	res.render('photo_form', {title: 'Profile Picture'});
+    }
+};
+
+exports.get_photo = function(req, res, next) {
+    User.findById(req.user._id)
+	.exec( function(err, user) {
+            if (err) return next(err);
+            res.contentType(user.avatar.contentType);
+	    res.send(user.avatar.data);
+	})
+}

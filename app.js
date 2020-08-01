@@ -7,6 +7,8 @@ var sassMiddleware = require('node-sass-middleware');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require("express-session");
+var multer = require('multer');
+var upload = multer();
 
 var indexRouter = require('./routes/index');
 var requestRouter = require('./routes/request');

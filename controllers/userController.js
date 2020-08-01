@@ -43,7 +43,7 @@ exports.index_users = function(req, res, next) {
 }
 
 //TODO also get Posts by user with async, get all posts on timeline
-//if id is req user or id is in friends list
+//if id is req user or id is in friends list ($in query)
 exports.show_user = function(req, res, next) {
     async.parallel(
       { 

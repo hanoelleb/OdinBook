@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var multer  = require('multer');
+var upload = multer({ dest: './public/data/uploads/' });
 
 var UserController = require('../controllers/userController');
 var RequestController = require('../controllers/requestController');
@@ -32,6 +34,13 @@ router.put('/profile/', ProfileController.put_update);
 router.delete('/profile/', function(req, res, next) {
   res.send('NOT IMPLEMENTED: delete profile');
 });
+
+router.get('/profile/upload', ProfileController.photo_form);
+
+router.post('/profile/upload', upload.single('avatar'), 
+    ProfileController.set_photo);
+
+router.get('/profile/photo', ProfileController.get_photo);
 
 /* Friends */
 

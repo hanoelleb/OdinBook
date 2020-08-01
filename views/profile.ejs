@@ -6,6 +6,14 @@
     <body>
 	<%- include navbar %>
 	<h2><%= title %></h2>
+	
+	<% if (user.avatar.data != null) { %>
+	    <img src='/profile/photo'>
+	    <a href='/profile/upload'>Change photo</a>
+	<% } else { %>
+            <a href='/profile/upload'>Add profile picture</a>
+	<% } %>
+	
 	<p>Name: <%= user.name %></p>
 	<p>Age: <%= user.age ? user.age : 'Add your age by editing your profile!'%></p>
 	<p>Birthday: <%= user.birthday ? user.birthday : 'Add your birthday by editing your profile!'%></p>

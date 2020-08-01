@@ -11,7 +11,8 @@ var UserSchema = new Schema(
     age: {type: Number},
     bio: {type: String},
     friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    requests: [{type: Schema.Types.ObjectId, ref: 'Request'}]
+    requests: [{type: Schema.Types.ObjectId, ref: 'Request'}],
+    avatar: { data: Buffer, contentType: String }
   }
 );
 
