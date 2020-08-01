@@ -45,16 +45,28 @@ exports.index_users = function(req, res, next) {
 //TODO also get Posts by user with async, get all posts on timeline
 //if id is req user or id is in friends list ($in query)
 exports.show_user = function(req, res, next) {
-    async.parallel(
-      { 
-	user: function(callback) {
+    async.parallel({
+        user: function(callback) {
 	    User.findById(req.params.id)
-                .exec(callback);
-        },
-	posts: function(callback) {
-            Post.find({user: req.params.id})
-		.populate('user')
-		.exec(callback);
+               .exec(callback);
+	},
+	posts: function(callback) { 
+	    async.waterfall([
+	        function(next) {
+	            User.findById(req.params.id)
+                       .exec(next);
+                },
+	        function(user, next) {
+                    user.friends.push(req.params.id);
+                    Post.find({'user': { $in: user.friends } })
+		        .populate('user')
+			.sort({date: 'descending'})
+		        .exec(next);
+	        }
+	      ], function(err, result) {
+	           if (err) return next(err);
+		   callback(err, result);
+	    })
 	},
 	isFriends: function(callback) {
             User.find({_id: req.params.id, friends: req.user._id})

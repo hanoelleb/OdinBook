@@ -14,7 +14,6 @@ exports.get_posts = function(req, res, next) {
 	function(user, next) {
 	  //also include own posts
           user.friends.push(req.user._id);
-          console.log(user.friends);
           Post.find({'user' : { $in : user.friends }})
               .populate('user')
               .sort({date: 'descending'})
