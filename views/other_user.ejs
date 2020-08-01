@@ -16,6 +16,7 @@
                 <a href=<%= '/' + user._id + '/posts/' + posts[i]._id %> >
 		    More details
 		</a>
+		<p><%= posts[i].user.name %>
                 <p><%= posts[i].content %></p>
 		<span>
                     <form method='POST' 

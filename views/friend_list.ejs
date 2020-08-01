@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+	<% include navbar %>
+        <h2><%= title %></h2>
+	<% for (var i = 0; i < friend_list.length; i++) { %>
+	    <%= friend_list[i].name %>
+	    <form method='POST' action=''>
+                <input type='submit' value='Remove'></input>
+            </form>
+	<% } %>
+    </body>
+</html>
+

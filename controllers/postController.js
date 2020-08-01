@@ -24,6 +24,7 @@ exports.get_post_page = function(req, res, next) {
       {
           post: function(callback) {
               Post.findById(id)
+		  .populate('user')
 		  .exec(callback);
 	  },
           comments: function(callback) {
@@ -61,7 +62,6 @@ exports.update_post = function(req, res, next) {
 
     Post.findByIdAndUpdate(id, post, {}, 
         function(err, thepost) {
-            console.log(JSON.stringify(thepost));
 	    if (err) return next(err);
             res.redirect( thepost.url );
 	}
@@ -73,6 +73,7 @@ exports.get_other_user_post = function(req, res, next) {
       {
           post: function(callback) {
               Post.findById(req.params.pid)
+		  .populate('user')
 		  .exec(callback);
 	  },
           comments: function(callback) {
@@ -98,5 +99,5 @@ exports.like_post = function(req, res, next) {
              if (err) return next(err);
              res.redirect('/' + req.params.id + '/timeline');
 	 }
-    );
+    )
 }

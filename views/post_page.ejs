@@ -9,6 +9,7 @@
 	    <a href=<%= '/post/' + post._id + '/delete' %>>Remove post</a>
 	<% } %>
         <div>
+	    <%= post.user.name %>
             <%= post.content %>
 	    <span>
 		 <form method='POST' 
@@ -30,25 +31,11 @@
 	        <div>
 		    <%= comments[i].author.name %><br>
 		    <%= comments[i].content %>
-		    <span>
-			<button>like this:</button><%= comments[i].likes %>
-                    </span>
 		    <% if (comments[i].author._id.toString() === 
 		        user._id.toString()) { %>
 		        <button>Edit</button>
 			<button>Delete</button>
-                    <% } else { %>
-		        <form method='POST' 
-                          action='<%= "/"+user._id+"/posts/"+post._id+
-			      "/?_method=PUT" %>'>
-
-                        <input type='hidden' name='comment_id' 
-                          value='<%= comments[i]._id %>'></input>
-
-                        <input type='submit' name='action'
-                          value='like this:'></input>
-                        </form>      
-                    <% } %>
+                    <% }  %>
 		    date: <%= comments[i].date %>
                 </div>
             <% } %>

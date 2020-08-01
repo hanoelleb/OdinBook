@@ -23,9 +23,7 @@ router.post('/', PostController.add_post);
 
 /* Profile */
 
-router.get('/profile/', function(req, res, next) {
-  res.render('profile', {title: 'Your profile', user: req.user });
-})
+router.get('/profile/', ProfileController.get_profile)
 
 router.get('/profile/edit', ProfileController.get_edit)
 
@@ -39,10 +37,9 @@ router.delete('/profile/', function(req, res, next) {
 
 router.get('/find', UserController.index_users);
 
-router.get('/friends', function(req, res, next) {
-  res.render('friends_list', {title: 'Your friends'});
-});
+router.get('/friends', UserController.show_friends);
 
+//change to post route
 router.delete('/friends/:id/remove', function(req, res, next) {
   res.send('NOT IMPLEMENTED: remove friend');
 });

@@ -12,6 +12,29 @@
         <p>Bio: <%= user.bio ? 
 	    user.bio : 'This user does not have a bio.'%>
 	<p>
+	<h3><%= user.name + "'s posts"%></h3>
+	<% for (var i = 0; i < posts.length; i++) { %>
+	     <div>
+                <a href=<%= '/' + user._id + '/posts/' + posts[i]._id %> >
+                    More details
+                </a>
+                <p><%= posts[i].user.name %>
+                <p><%= posts[i].content %></p>
+                <span>
+                    <form method='POST' 
+                        action='<%= "/"+user._id+"/timeline?_method=PUT" %>'>
+
+                        <input type='hidden' name='post_id' 
+                            value='<%= posts[i]._id %>'></input>
+
+                        <input type='submit' name='action'
+                            value="<%= 'like this: ' + posts[i].likes  %>">
+                        </input>
+                    </form>
+                    <p>date: <%= posts[i].date %></p>
+                </span>
+            </div>
+	<% } %>
     </body>
 </html>
 

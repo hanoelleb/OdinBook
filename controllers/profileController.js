@@ -1,6 +1,16 @@
 var async = require('async');
 
 var User = require('../models/user');
+var Post = require('../models/post');
+
+exports.get_profile = function(req, res, next) {
+    Post.find({user: req.user._id})
+	.sort({date: 'descending'})
+	.exec( function(err, posts) {
+            res.render('profile', {title: 'Your profile', user: req.user,
+	    posts: posts});
+	})
+}
 
 exports.get_edit = function( req, res, next) {
     res.render('profile_form', { title: 'Edit Profile', user: req.user });
@@ -24,9 +34,20 @@ exports.put_update = function( req, res, next) {
 };
 
 exports.show_other_profile = function( req, res, next) {
-    User.findById(req.params.id)
-	.exec( function(err, found_user) {
-	    if (err) return next(err);
-            res.render('other_profile', { user: found_user } );
-	});
+    async.parallel({
+        user: function(callback) {
+	    User.findById(req.params.id)
+		.exec(callback);
+	    },
+	posts: function(callback) {
+            Post.find({user: req.params.id})
+		.populate('user')
+		.sort({date: 'descending'})
+		.exec(callback);
+	    } 
+    }, function(err, results) {
+        if (err) return next(err);
+	res.render('other_profile', { user: results.user, 
+            posts: results.posts } );
+    });
 };

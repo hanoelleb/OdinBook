@@ -43,6 +43,7 @@ exports.index_users = function(req, res, next) {
 }
 
 //TODO also get Posts by user with async, get all posts on timeline
+//if id is req user or id is in friends list
 exports.show_user = function(req, res, next) {
     async.parallel(
       { 
@@ -52,6 +53,7 @@ exports.show_user = function(req, res, next) {
         },
 	posts: function(callback) {
             Post.find({user: req.params.id})
+		.populate('user')
 		.exec(callback);
 	},
 	isFriends: function(callback) {
@@ -65,4 +67,15 @@ exports.show_user = function(req, res, next) {
 	        posts: results.posts, isFriends: results.isFriends });
         }
     )
+}
+
+exports.show_friends = function(req, res, next) {
+    User.findById(req.user._id)
+	.populate('friends')
+	.exec(function (err, user) {
+	    if (err) return next(err);
+            console.log(user.friends[0].name);
+            res.render('friend_list', {title: 'Your friends', 
+		friend_list: user.friends} );
+	});
 }
