@@ -86,7 +86,6 @@ exports.show_friends = function(req, res, next) {
 	.populate('friends')
 	.exec(function (err, user) {
 	    if (err) return next(err);
-            console.log(user.friends[0].name);
             res.render('friend_list', {title: 'Your friends', 
 		friend_list: user.friends} );
 	});

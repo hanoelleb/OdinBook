@@ -62,14 +62,13 @@ exports.set_photo = function(req, res, next) {
 
     if (req.file != null) {
 	var user = new User({
-	    _id: user_id,
+	    _id: user_id
 	});
 
 	user.avatar.data = fs.readFileSync(req.file.path);
 	user.avatar.contentType = 'image/png';
-        console.log('set image');
 
-        User.findByIdAndUpdate(user_id, user, {}, 
+        User.findByIdAndUpdate(user_id, {'avatar': user.avatar}, 
 	    function(err){
                 if (err) return next(err);
 		res.redirect('/profile');
