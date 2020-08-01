@@ -88,3 +88,12 @@ exports.get_photo = function(req, res, next) {
 	    res.send(user.avatar.data);
 	})
 }
+
+exports.show_other_photo = function(req, res, next) {
+    User.findById(req.params.id)
+        .exec( function(err, user) {
+            if (err) return next(err);
+            res.contentType(user.avatar.contentType);
+            res.send(user.avatar.data);
+        })
+}

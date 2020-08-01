@@ -91,4 +91,6 @@ router.post('/:id/posts/:pid', CommentController.post_comment);
 
 router.get('/:id/profile', ProfileController.show_other_profile);
 
+router.get('/:id/profile/photo', ProfileController.show_other_photo);
+
 module.exports = router;
