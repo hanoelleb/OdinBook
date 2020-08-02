@@ -7,16 +7,18 @@ require('../passport');
 
 var UserController = require('../controllers/userController');
 
-router.get('/signin', function(req, res, next) {
+router.get('/sign-in', function(req, res, next) {
     res.render('sign_in', {title: 'Sign in!'});
 });
 
-router.post('/signin', UserController.post_signin);
+router.post('/sign-in', UserController.post_signin);
 
-router.get('/signup', function(req, res, next) {
+router.get('/sign-up', function(req, res, next) {
     res.render('sign_up', {title: 'Sign up!'});
 });
 
-router.post('/signup', UserController.create_user);
+router.post('/sign-up', UserController.create_user);
+
+router.get('/sign-out', UserController.get_signout);
 
 module.exports = router;

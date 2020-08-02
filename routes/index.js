@@ -13,7 +13,7 @@ var IndexController = require('../controllers/indexController');
 //redirect to sign in if not logged in
 router.use(function loggedIn(req, res, next) {
     if (!req.user)
-        res.redirect('/auth/signin');
+        res.redirect('/auth/sign-in');
     else
         next();
 })

@@ -31,8 +31,13 @@ exports.create_user = function(req, res, next) {
 
 exports.post_signin = passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/auth/signin'
+        failureRedirect: '/auth/sign-in'
 });
+
+exports.get_signout = function(req, res, next) {
+    req.logout();
+    res.redirect('/auth/sign-in');
+}
 
 exports.index_users = function(req, res, next) {
     User.find({'_id' : {$ne : req.user._id}})
@@ -42,8 +47,6 @@ exports.index_users = function(req, res, next) {
 	});
 }
 
-//TODO also get Posts by user with async, get all posts on timeline
-//if id is req user or id is in friends list ($in query)
 exports.show_user = function(req, res, next) {
     async.parallel({
         user: function(callback) {
