@@ -5,13 +5,16 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <div class='auth'>
     <h1><%= title %></h1>
     <form method='POST' action=''>
         <input type='text' name='username' placeholder='Name'></input>
 	<input type='password' name='password' placeholder='Password'></input>
 	<input type='submit' value='Sign in'></input>
     </form>
-    <span>Don't have an account? <a href='/auth/sign-up'>Sign up</a></span>
+    <span class='auth'>Don't have an account?
+        <a href='/auth/sign-up'>Sign up</a></span>
+    </div>
   </body>
 </html>
 

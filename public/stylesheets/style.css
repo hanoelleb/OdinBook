@@ -1,8 +1,90 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: peachpuff;
+  color: darkgoldenrod; }
 
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+  text-decoration: none; }
+
+form {
+  margin: auto;
+  background-color: goldenrod;
+  border-radius: 5px;
+  padding: 20px;
+  width: 33vw;
+  box-shadow: 3px 3px 5px gray;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: left; }
+  form input {
+    margin-bottom: 10px; }
+  form input[type='submit'] {
+    margin-bottom: 5px;
+    width: auto;
+    align-self: center; }
+
+#post_form {
+  background-color: transparent;
+  display: inline;
+  margin-bottom: 20px;
+  padding: 0px;
+  box-shadow: none;
+  width: auto; }
+
+#navbar {
+  margin-top: 0px;
+  margin-left: -50px;
+  margin-right: -50px;
+  margin-bottom: 20px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  background-color: goldenrod;
+  color: white;
+  display: flex;
+  list-style: none; }
+  #navbar li {
+    font-size: 18px;
+    margin-right: 30px; }
+    #navbar li a {
+      text-decoration: none;
+      color: white; }
+      #navbar li a:hover {
+        color: lightcoral; }
+  #navbar #request {
+    text-align: left; }
+    #navbar #request #req_options {
+      position: absolute;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 3px 3px 5px gray;
+      margin-left: -10px;
+      display: block; }
+      #navbar #request #req_options a {
+        display: block;
+        width: 100px;
+        color: darkgoldenrod; }
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center; }
+  .auth span {
+    margin-top: 30px; }
+
+.post {
+  padding: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  width: 80vw;
+  margin-bottom: 30px; }
+  .post a {
+    color: darkgoldenrod;
+    text-decoration: none; }
 
 /*# sourceMappingURL=style.css.map */
