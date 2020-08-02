@@ -70,21 +70,16 @@ exports.index_users = function(req, res, next) {
 		 .exec(next)
 	 }
     ], function(err, result) {
-	console.log('RESULT: ' + result);
         if (err) return next(err);
         res.render('find', {title: 'Find friends!', users: result});
     })
-
-    /*
-    User.find({'_id' : {$ne : req.user._id}})
-        .exec( function(err, user_list) {
-	    if (err) return next(err);
-            res.render('find', {title: 'Find friends!', users: user_list});
-	});
-    */
 }
 
 exports.show_user = function(req, res, next) {
+
+    if (req.params.id.toString === req.user.id.toString())
+        res.redirect('/');
+
     async.parallel({
         user: function(callback) {
 	    User.findById(req.params.id)

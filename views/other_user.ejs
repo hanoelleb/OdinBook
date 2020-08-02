@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset='UTF-8'>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
     <body>
 	<h2><%= user.name + "'s Timeline" %></h2>
@@ -20,7 +21,7 @@
                 <p><%= posts[i].content %></p>
 		<span>
                     <form method='POST' 
-                        action='<%= "/"+user._id+"/timeline?_method=PUT" %>'>
+                        action='<%= "/"+posts[i].user._id+"/timeline?_method=PUT" %>'>
 
                         <input type='hidden' name='post_id' 
                             value='<%= posts[i]._id %>'></input>

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<button>New Post</button>
-<form method='POST' action='/'>
+<button id='new'>New Post</button>
+<button id='cancel'>Cancel</button>
+<form id='post_form' method='POST' action='/'>
     <textarea name='post' placeholder="What's on your mind?"
      rows='8' cols='80'></textarea>
     <input type='submit' value='Post'></input>
 </form>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type='text/javascript' src='/javascripts/timeline.js'></script>

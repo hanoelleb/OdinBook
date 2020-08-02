@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+	<meta charset='UTF-8'>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
     <body>
         <%- include navbar %>
-	<% if (!other) { %>
+	<% if (user._id.toString() === post.user._id.toString()) { %>
 	    <a href=<%= '/post/' + post._id + '/edit' %>> >Edit post</a>
 	    <a href=<%= '/post/' + post._id + '/delete' %>>Remove post</a>
 	<% } %>
@@ -13,7 +15,7 @@
             <%= post.content %>
 	    <span>
 		 <form method='POST' 
-                      action='<%= "/"+user._id+"/posts/"+post._id+
+                      action='<%= "/"+post.user._id+"/posts/"+post._id+
                       "/?_method=PUT" %>'>
 
                       <input type='hidden' name='post_id' 

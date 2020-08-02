@@ -73,6 +73,12 @@ router.post('/post/:id/', CommentController.create_comment);
 
 /* Other User */
 
+/*
+function(req, res, next) {
+    if (req.params.id.toString === req.user.id.toString())
+        res.redirect('/');
+}
+*/
 router.get('/:id/timeline/', UserController.show_user);
 
 //send friend request

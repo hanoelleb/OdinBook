@@ -3,7 +3,15 @@
     <li><a href='/'>Timeline</a></li>
     <li><a href='/profile'>Profile</a></li>
     <li><a href='/friends'>Friends</a></li>
-    <li id='request'>Requests</li>
+    <li id='request'>
+	Requests
+	<ul id='req_options'>
+            <a href='/requests/sent'>Sent</a>
+	    <a href='/requests/received'>Received</a>
+        </ul>
+    </li>
     <li><a href='/find'>Find</a></li>
-    <li><a href='/auth/sign-out'>Sign out</li>
+    <li><a href='/auth/sign-out'>Sign out</a></li>
 </ul>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type='text/javascript' src='/javascripts/nav_bar.js'></script>
