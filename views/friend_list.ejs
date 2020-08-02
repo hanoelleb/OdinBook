@@ -7,14 +7,17 @@
     <body>
 	<% include navbar %>
         <h2><%= title %></h2>
+	<div id='friend-list'>
 	<% for (var i = 0; i < friend_list.length; i++) { %>
-	    <a href="<%='/'+friend_list[i]._id+'/timeline'%>">
-		<%= friend_list[i].name %>
-	    </a>
-	    <form method='POST' action=''>
-                <input type='submit' value='Remove'></input>
-            </form>
-	<% } %>
+	    <div>
+	        <a href="<%='/'+friend_list[i]._id+'/timeline'%>">
+		    <%= friend_list[i].name %>
+	        </a>
+	        <form class='remove-friend' method='POST' action=''>
+                    <input type='submit' value='Remove'></input>
+                </form>
+            </div>
+        <% } %>
     </body>
 </html>
 

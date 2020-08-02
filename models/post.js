@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment = require('moment');
 
 var PostSchema = new Schema(
  {
@@ -14,6 +15,12 @@ PostSchema
   .virtual('url')
   .get( function() {
       return '/post/' + this._id;
+  });
+
+PostSchema
+  .virtual('formatted_date')
+  .get( function() {
+      return moment(this.date).format('MMMM Do YYYY');
   });
 
 module.exports = mongoose.model('Post', PostSchema);

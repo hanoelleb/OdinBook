@@ -35,6 +35,9 @@ exports.put_update = function( req, res, next) {
 };
 
 exports.show_other_profile = function( req, res, next) {
+    if (req.params.id.toString() === req.user._id.toString())
+        res.redirect('/profile');
+
     async.parallel({
         user: function(callback) {
 	    User.findById(req.params.id)

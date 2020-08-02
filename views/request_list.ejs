@@ -10,7 +10,7 @@
 	    <div>
 		<% if (isSent) { %>
 		    Request sent to: <%= request_list[i].receiver.name %>
-		    <form method='POST' action=''>
+		    <form class='request' method='POST' action=''>
 			<input type='hidden' 
 			   value='<%= request_list[i]._id %>' name='req_id'>
 			</input>
@@ -19,7 +19,7 @@
                     </form>
 		<% } else { %>
                     Request from: <%= request_list[i].sender.name %>
-		    <form method='POST' action=''>
+		    <form class='request' method='POST' action=''>
 			<input type='hidden'
 			   value='<%= request_list[i]._id %>' name='req_id'>
 			</input>

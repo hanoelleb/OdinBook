@@ -23,6 +23,8 @@ router.get('/', IndexController.get_posts);
 
 router.post('/', PostController.add_post);
 
+router.put('/', PostController.like_post_timeline);
+
 /* Profile */
 
 router.get('/profile/', ProfileController.get_profile)

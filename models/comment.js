@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment = require('moment');
 
 var CommentSchema = new Schema(
   {
@@ -10,5 +11,11 @@ var CommentSchema = new Schema(
     likes: {type: Number}
   }
 );
+
+CommentSchema
+  .virtual('formatted_date')
+  .get(function() {
+      return moment(this.date).format('MMMM Do YYYY');
+  });
 
 module.exports = mongoose.model('Comment', CommentSchema);

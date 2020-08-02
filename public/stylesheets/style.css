@@ -28,11 +28,37 @@ form {
 
 #post_form {
   background-color: transparent;
-  display: inline;
+  display: inline-block;
   margin-bottom: 20px;
   padding: 0px;
   box-shadow: none;
   width: auto; }
+  #post_form input[type='submit'] {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: goldenrod; }
+    #post_form input[type='submit']:active {
+      background-color: darkgoldenrod; }
+
+#new {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: goldenrod; }
+  #new:active {
+    background-color: darkgoldenrod; }
+
+#cancel {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: goldenrod; }
+  #cancel:active {
+    background-color: darkgoldenrod; }
 
 #navbar {
   margin-top: 0px;
@@ -68,6 +94,24 @@ form {
         width: 100px;
         color: darkgoldenrod; }
 
+#friend-list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline; }
+
+#comment-form {
+  background-color: transparent;
+  padding: 0px;
+  box-shadow: none; }
+  #comment-form input[type='submit'] {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: goldenrod; }
+    #comment-form input[type='submit']:active {
+      background-color: darkgoldenrod; }
+
 .auth {
   display: flex;
   flex-direction: column;
@@ -86,5 +130,65 @@ form {
   .post a {
     color: darkgoldenrod;
     text-decoration: none; }
+  .post .date {
+    display: inline;
+    float: right; }
+
+.like {
+  padding: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  display: inline; }
+  .like input[type='submit'] {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: goldenrod; }
+    .like input[type='submit']:active {
+      background-color: darkgoldenrod; }
+
+.request {
+  padding: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  display: inline; }
+  .request input[type='submit'] {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: goldenrod; }
+    .request input[type='submit']:active {
+      background-color: darkgoldenrod; }
+
+.remove-friend {
+  padding: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  display: inline; }
+  .remove-friend input[type='submit'] {
+    margin-left: 40px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: goldenrod; }
+    .remove-friend input[type='submit']:active {
+      background-color: darkgoldenrod; }
+
+.comment {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px; }
+  .comment #edit, .comment #delete {
+    color: white;
+    background-color: goldenrod;
+    border: none;
+    border-radius: 5px;
+    padding: 5px; }
+  .comment .date {
+    float: right; }
 
 /*# sourceMappingURL=style.css.map */

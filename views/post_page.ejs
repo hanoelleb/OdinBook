@@ -7,14 +7,16 @@
     <body>
         <%- include navbar %>
 	<% if (user._id.toString() === post.user._id.toString()) { %>
-	    <a href=<%= '/post/' + post._id + '/edit' %>> >Edit post</a>
+	    <a href=<%= '/post/' + post._id + '/edit' %>>Edit post</a>
 	    <a href=<%= '/post/' + post._id + '/delete' %>>Remove post</a>
 	<% } %>
         <div class='post'>
-	    <%= post.user.name %>
+	    <a href="<%='/'+post.user._id+'/timeline' %>">
+                <%= post.user.name %></a>
+	    <br>
             <%= post.content %>
 	    <span>
-		 <form method='POST' 
+		 <form class='like' method='POST' 
                       action='<%= "/"+post.user._id+"/posts/"+post._id+
                       "/?_method=PUT" %>'>
 
@@ -24,21 +26,26 @@
                       <input type='submit' name='action'
 			  value="<%= 'like this: ' + post.likes %>"></input>
                  </form>
-		 date: <%= post.date %>
+		 <p class='date'>date: <%= post.formatted_date %></p>
 	    </span>
         </div>
 	<%- include comment_form %>
+	<h3>Comments</h3>
         <% if (comments) { %>
             <% for (var i = 0; i < comments.length; i++) { %>
-	        <div>
-		    <%= comments[i].author.name %><br>
+	        <div class='comment'>
+                    <a href="<%='/'+comments[i].author._id+'/timeline' %>">
+		        <%= comments[i].author.name %>
+		    </a>
+                    <br>
 		    <%= comments[i].content %>
+		    <br>
 		    <% if (comments[i].author._id.toString() === 
 		        user._id.toString()) { %>
-		        <button>Edit</button>
-			<button>Delete</button>
+		        <button id='edit'>Edit</button>
+			<button id='delete'>Delete</button>
                     <% }  %>
-		    date: <%= comments[i].date %>
+		    <p class='date'>date: <%= comments[i].formatted_date %></p>
                 </div>
             <% } %>
 	<% } else { %>

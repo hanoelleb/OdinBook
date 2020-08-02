@@ -30,6 +30,7 @@ exports.get_post_page = function(req, res, next) {
           comments: function(callback) {
               Comment.find({post: id})
 		  .populate('post')
+		  .populate('author')
 		  .exec(callback);
 	  }
       },
@@ -104,4 +105,14 @@ exports.like_post = function(req, res, next) {
                  res.redirect('/' + current + '/timeline');
 	 }
     )
+}
+
+exports.like_post_timeline = function(req, res, next) {
+   var post_id = req.body.post_id;
+   Post.findByIdAndUpdate(post_id, {$inc : { likes : 1 }},
+         { new: true}, function(err) {
+             if (err) return next(err);
+             res.redirect('/');
+         }
+    )    
 }

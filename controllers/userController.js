@@ -77,9 +77,9 @@ exports.index_users = function(req, res, next) {
 
 exports.show_user = function(req, res, next) {
 
-    if (req.params.id.toString === req.user.id.toString())
+    if (req.params.id.toString() === req.user._id.toString())
         res.redirect('/');
-
+    
     async.parallel({
         user: function(callback) {
 	    User.findById(req.params.id)

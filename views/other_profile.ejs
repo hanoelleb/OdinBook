@@ -9,7 +9,9 @@
 	<% if (user.avatar.data != null) { %>
 	    <img src=<%= '/' + user._id + '/profile/photo' %> >
         <% } %>
-
+        <a href="<%= '/'+user._id+'/timeline' %>">
+	    View <%= user.name +"'s" %> Timeline
+	</a>
         <h2><%= user.name + "'s profile"%></h2>
         <p>Name: <%= user.name %></p>
         <p>Age: <%= user.age ? user.age : "This user doesn't have their age posted."%></p>
@@ -21,12 +23,14 @@
 	<% for (var i = 0; i < posts.length; i++) { %>
 	     <div class='post'>
                 <a href=<%= '/' + user._id + '/posts/' + posts[i]._id %> >
-                    More details
-                </a>
-                <p><%= posts[i].user.name %>
+                    See comments
+		</a><br><br>
+		<a href="<%='/'+posts[i].user._id+'/timeline' %>">
+		    <%= posts[i].user.name %>
+		</a>
                 <p><%= posts[i].content %></p>
                 <span>
-                    <form method='POST' 
+                    <form class='like' method='POST' 
                         action='<%= "/"+user._id+"/timeline?_method=PUT" %>'>
 
                         <input type='hidden' name='post_id' 
@@ -36,7 +40,7 @@
                             value="<%= 'like this: ' + posts[i].likes  %>">
                         </input>
                     </form>
-                    <p>date: <%= posts[i].date %></p>
+                    <p>date: <%= posts[i].formatted_date %></p>
                 </span>
             </div>
 	<% } %>
