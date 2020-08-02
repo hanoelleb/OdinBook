@@ -4,6 +4,7 @@ var passport = require('passport');
 
 var User = require('../models/user');
 var Post = require('../models/post');
+var Request = require('../models/friend_request');
 
 require('../passport');
 
@@ -39,12 +40,48 @@ exports.get_signout = function(req, res, next) {
     res.redirect('/auth/sign-in');
 }
 
+//find users that 1. aren't this user, not friends with this user, and have no requests with this user
 exports.index_users = function(req, res, next) {
+    async.waterfall([
+         function(next) {
+             Request.find({ 
+               $or: [
+		 { sender: req.user._id },
+		 { receiver: req.user._id},
+	       ] 
+	     })
+		 .exec(next);
+	 },
+         function(requests, next) {
+             var request_list = [];
+             for (var i = 0; i < requests.length; i++) {
+                 if (requests[i].sender.toString() !== req.user._id)
+		     request_list.push(requests[i].sender);
+		 if (requests[i].receiver.toString() !== req.user._id)
+		     request_list.push(requests[i].receiver);
+	     }
+             console.log(request_list);
+
+             User.find({ $and: [
+		 {'_id' : {$ne: req.user._id} }, 
+		 {'_id' : { $nin : req.user.friends} },
+	         {'_id' : { $nin : request_list} } 
+	     ] })
+		 .exec(next)
+	 }
+    ], function(err, result) {
+	console.log('RESULT: ' + result);
+        if (err) return next(err);
+        res.render('find', {title: 'Find friends!', users: result});
+    })
+
+    /*
     User.find({'_id' : {$ne : req.user._id}})
         .exec( function(err, user_list) {
 	    if (err) return next(err);
             res.render('find', {title: 'Find friends!', users: user_list});
 	});
+    */
 }
 
 exports.show_user = function(req, res, next) {
