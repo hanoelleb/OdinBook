@@ -134,6 +134,11 @@ form {
     display: inline;
     float: right; }
 
+.post_pic {
+  width: 60vw;
+  height: auto;
+  display: block; }
+
 .like {
   padding: 0px;
   background-color: transparent;
