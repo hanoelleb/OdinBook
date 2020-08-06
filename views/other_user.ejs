@@ -19,6 +19,12 @@
                 <a href=<%= '/' + user._id + '/posts/' + posts[i]._id %> >
 		    See comments
 		</a><br><br>
+
+	        <% if (posts[i].user.avatar.data != null) { %>
+                    <img class='avatar' src="<%= '/' + 
+                        posts[i].user._id + '/profile/photo' %>">
+                <% } %>
+
 		<a href="<%='/'+posts[i].user._id+'/timeline' %>">
                     <%= posts[i].user.name %>
                 </a>

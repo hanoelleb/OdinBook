@@ -23,6 +23,9 @@
 	<h3>Your posts</h3>
 	<% for (var i = 0; i < posts.length; i++ ) { %>
 	    <div class='post'>
+		<% if (user.avatar.data != null) { %>
+                    <img class='avatar' src='/profile/photo'>
+                <% } %>
 		<a href='/'><%= user.name %></a><br>
 		<%= posts[i].content %>
 		<br>

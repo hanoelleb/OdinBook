@@ -191,4 +191,8 @@ form {
   .comment .date {
     float: right; }
 
+.avatar {
+  width: 50px;
+  height: auto; }
+
 /*# sourceMappingURL=style.css.map */

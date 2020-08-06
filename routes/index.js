@@ -44,6 +44,8 @@ router.post('/profile/upload', upload.single('avatar'),
 
 router.get('/profile/photo', ProfileController.get_photo);
 
+router.get('/:id/profile/photo', ProfileController.get_other_photo);
+
 /* Friends */
 
 router.get('/find', UserController.index_users);

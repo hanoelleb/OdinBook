@@ -34,6 +34,10 @@
         <% if (comments) { %>
             <% for (var i = 0; i < comments.length; i++) { %>
 	        <div class='comment'>
+	            <% if (comments[i].author.avatar.data != null) { %>
+                        <img class='avatar' src="<%= '/' + 
+                            comments[i].author._id + '/profile/photo' %>">
+                    <% } %>
                     <a href="<%='/'+comments[i].author._id+'/timeline' %>">
 		        <%= comments[i].author.name %>
 		    </a>
