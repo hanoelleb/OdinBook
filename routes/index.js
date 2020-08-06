@@ -21,7 +21,7 @@ router.use(function loggedIn(req, res, next) {
 /* GET home page. */
 router.get('/', IndexController.get_posts);
 
-router.post('/', PostController.add_post);
+router.post('/', upload.single('picture'), PostController.add_post);
 
 router.put('/', PostController.like_post_timeline);
 
@@ -74,6 +74,8 @@ router.delete('/post/:id/comment/:cid', function(req, res, next) {
 });
 
 router.post('/post/:id/', CommentController.create_comment);
+
+router.get('/post/:id/photo', PostController.get_post_photo);
 
 /* Other User */
 

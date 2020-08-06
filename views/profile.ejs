@@ -27,6 +27,12 @@
                     <img class='avatar' src='/profile/photo'>
                 <% } %>
 		<a href='/'><%= user.name %></a><br>
+
+		<% if (posts[i].picture.data != null) {  %>
+                    <img class='post_pic'
+                        src="<%= '/post/' + posts[i]._id + '/photo' %>">
+                <% } %>
+
 		<%= posts[i].content %>
 		<br>
 		<span>likes: <%= posts[i].likes %>

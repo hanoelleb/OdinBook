@@ -34,6 +34,12 @@
 		<a href="<%='/'+posts[i].user._id+'/timeline' %>">
 		    <%= posts[i].user.name %>
 		</a>
+
+		<% if (posts[i].picture.data != null) {  %>
+                    <img class='post_pic'
+                        src="<%= '/post/' + posts[i]._id + '/photo' %>">
+                <% } %>
+
                 <p><%= posts[i].content %></p>
                 <span>
                     <form class='like' method='POST' 

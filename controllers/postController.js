@@ -1,15 +1,23 @@
 var async = require('async');
+var fs = require('fs');
 
 var Post = require('../models/post');
 var Comment = require('../models/comment');
 
 exports.add_post = function(req, res, next) {
+    console.log('CONTENT: ' + req.body.post);
+
     var post = new Post({
         user: req.user._id,
         content: req.body.post,
         date: new Date(),
 	likes: 0
     });
+
+    if (req.file != null) {
+        post.picture.data = fs.readFileSync(req.file.path);
+	post.picture.contentType = 'image/png';
+    }
 
     post.save( function(err){
         if (err) return next(err);
@@ -115,4 +123,13 @@ exports.like_post_timeline = function(req, res, next) {
              res.redirect('/');
          }
     )    
+}
+
+exports.get_post_photo = function(req, res, next) {
+  Post.findById(req.params.id)
+        .exec( function(err, post) {
+            if (err) return next(err);
+            res.contentType(post.picture.contentType);
+            res.send(post.picture.data);
+        })
 }

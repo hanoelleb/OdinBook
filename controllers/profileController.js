@@ -77,7 +77,6 @@ exports.set_photo = function(req, res, next) {
 		res.redirect('/profile');
 	    });
     } else {
-        console.log('no file uploaded');
 	res.render('photo_form', {title: 'Profile Picture'});
     }
 };

@@ -8,6 +8,7 @@ var PostSchema = new Schema(
    content: {type: String, required: true},
    date: {type: Date, required: true},
    likes: {type: Number},
+   picture: { data: Buffer, contentType: String }
  }
 );
 

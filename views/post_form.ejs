@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <button id='new'>New Post</button>
 <button id='cancel'>Cancel</button>
-<form id='post_form' method='POST' action='/'>
+<form id='post_form' method='POST' action='/' enctype='multipart/form-data'>
     <textarea name='post' placeholder="What's on your mind?"
      rows='8' cols='80'></textarea>
+    <br>
+    <label>Photo (optional)</label>
+    <input type='file' name='picture' accept="image/*"></input>
     <input type='submit' value='Post'></input>
 </form>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
