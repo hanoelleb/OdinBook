@@ -11,6 +11,11 @@
 	    <a href=<%= '/post/' + post._id + '/delete' %>>Remove post</a>
 	<% } %>
         <div class='post'>
+            <% if (post.user.avatar.data != null) { %>
+                        <img class='avatar' src="<%= '/' + 
+                            post.user._id + '/profile/photo' %>">
+            <% } %>
+
 	    <a href="<%='/'+post.user._id+'/timeline' %>">
                 <%= post.user.name %></a>
 	    <br>
